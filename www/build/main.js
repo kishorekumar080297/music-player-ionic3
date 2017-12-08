@@ -1,150 +1,6 @@
 webpackJsonp([0],{
 
-/***/ 110:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 110;
-
-/***/ }),
-
-/***/ 152:
-/***/ (function(module, exports) {
-
-function webpackEmptyAsyncContext(req) {
-	// Here Promise.resolve().then() is used instead of new Promise() to prevent
-	// uncatched exception popping up in devtools
-	return Promise.resolve().then(function() {
-		throw new Error("Cannot find module '" + req + "'.");
-	});
-}
-webpackEmptyAsyncContext.keys = function() { return []; };
-webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
-module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 152;
-
-/***/ }),
-
-/***/ 195:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_music_music__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__music_player_music_player__ = __webpack_require__(199);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-
-var HomePage = (function () {
-    function HomePage(actionSheetController, loadindController, musicProvider, navCtrl, socialSharing) {
-        this.actionSheetController = actionSheetController;
-        this.loadindController = loadindController;
-        this.musicProvider = musicProvider;
-        this.navCtrl = navCtrl;
-        this.socialSharing = socialSharing;
-        this.allMusic = [];
-    }
-    HomePage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        var allMusicLoadingController = this.loadindController.create({
-            content: "Getting your music from server",
-        });
-        allMusicLoadingController.present();
-        this.musicProvider.getMusic()
-            .subscribe(function (musicList) {
-            allMusicLoadingController.dismiss();
-            _this.allMusic = musicList;
-        });
-    };
-    HomePage.prototype.addOneSong = function (refresher) {
-        var _this = this;
-        // this.musicProvider.getOneSong()
-        this.musicProvider.getMusic()
-            .subscribe(function (oneSong) {
-            _this.allMusic.unshift(oneSong[0]);
-            refresher.complete();
-        });
-    };
-    HomePage.prototype.shareSong = function (music) {
-        var _this = this;
-        var shareSongActionSheet = this.actionSheetController.create({
-            title: "Share songs with friends",
-            buttons: [
-                {
-                    text: "Share On Facebook",
-                    icon: "logo-facebook",
-                    handler: function () {
-                        _this.socialSharing.shareViaFacebook(music.name, music.image, music.music_url);
-                    }
-                },
-                {
-                    text: "Share On Twitter",
-                    icon: "logo-twitter",
-                    handler: function () {
-                        _this.socialSharing.shareViaTwitter(music.name, music.image, music.music_url);
-                    }
-                },
-                {
-                    text: "Share",
-                    icon: "share",
-                    handler: function () {
-                        _this.socialSharing.share(music.name, "", music.image, music.music_url);
-                    }
-                },
-                {
-                    text: "Cancel",
-                    role: "destructive",
-                },
-            ],
-        });
-        shareSongActionSheet.present();
-    };
-    HomePage.prototype.goToMusicPlayer = function (music) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__music_player_music_player__["a" /* MusicPlayerPage */], {
-            music: music
-        });
-    };
-    HomePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Kishore Kumar\Desktop\Ionic 3\musica\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>All Music</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-refresher (ionRefresh)="addOneSong($event)">\n    <ion-refresher-content>\n\n    </ion-refresher-content>\n  </ion-refresher>\n  <ion-card *ngFor = "let music of allMusic">\n    <img [src]="music.image">\n    <ion-card-content>\n      <ion-card-title>{{music.name}}</ion-card-title>\n      <ion-item>\n        <button ion-button item-left color="default" (click)="shareSong(music)" outline round icon-left>\n          <ion-icon name="share-alt"></ion-icon>Share&nbsp;\n        </button>\n        <button ion-button outline item-right color="danger" (click)="goToMusicPlayer(music)" round icon-left>\n          <ion-icon name="musical-note"></ion-icon>Listen&nbsp;\n        </button>\n      </ion-item>\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Kishore Kumar\Desktop\Ionic 3\musica\src\pages\home\home.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_music_music__["a" /* MusicProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__["a" /* SocialSharing */]])
-    ], HomePage);
-    return HomePage;
-}());
-
-//# sourceMappingURL=home.js.map
-
-/***/ }),
-
-/***/ 196:
+/***/ 100:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -176,6 +32,7 @@ var API = "https://orangevalleycaa.org/api/music";
 var MusicProvider = (function () {
     function MusicProvider(http) {
         this.http = http;
+        this.favoriteSongs = [];
         console.log('Hello MusicProvider Provider');
     }
     MusicProvider.prototype.getMusic = function () {
@@ -185,14 +42,169 @@ var MusicProvider = (function () {
         var oneSongUrl = API + "/qty/1";
         return this.http.get(oneSongUrl).map(function (response) { return response.json(); });
     };
+    MusicProvider.prototype.getFavorites = function () {
+        return this.favoriteSongs;
+    };
+    MusicProvider.prototype.addToFavorites = function (song) {
+        var isSongAdded = this.favoriteSongs.findIndex(function (favoriteSong) {
+            return song.id === favoriteSong.id;
+        });
+        if (isSongAdded === -1) {
+            this.favoriteSongs.push(song);
+        }
+    };
     MusicProvider = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_http__["a" /* Http */]) === "function" && _a || Object])
     ], MusicProvider);
     return MusicProvider;
+    var _a;
 }());
 
 //# sourceMappingURL=music.js.map
+
+/***/ }),
+
+/***/ 111:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 111;
+
+/***/ }),
+
+/***/ 153:
+/***/ (function(module, exports) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncatched exception popping up in devtools
+	return Promise.resolve().then(function() {
+		throw new Error("Cannot find module '" + req + "'.");
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+module.exports = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = 153;
+
+/***/ }),
+
+/***/ 196:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_music_music__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__music_player_music_player__ = __webpack_require__(199);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+var HomePage = (function () {
+    function HomePage(socialSharing, actionSheetController, loadingController, navCtrl, musicProvider) {
+        this.socialSharing = socialSharing;
+        this.actionSheetController = actionSheetController;
+        this.loadingController = loadingController;
+        this.navCtrl = navCtrl;
+        this.musicProvider = musicProvider;
+        this.allMusic = [];
+    }
+    HomePage.prototype.ionViewDidLoad = function () {
+        var _this = this;
+        var allMusicLoadingController = this.loadingController.create({
+            content: "Getting Your Music From Server"
+        });
+        allMusicLoadingController.present();
+        this.musicProvider.getMusic()
+            .subscribe(function (musicList) {
+            allMusicLoadingController.dismiss();
+            _this.allMusic = musicList;
+        });
+    };
+    HomePage.prototype.addOneSong = function (refresher) {
+        var _this = this;
+        this.musicProvider.getOneSong()
+            .subscribe(function (oneSong) {
+            _this.allMusic.unshift(oneSong[0]);
+            refresher.complete();
+        });
+    };
+    HomePage.prototype.shareSong = function (music) {
+        var _this = this;
+        var shareSongActionSheet = this.actionSheetController.create({
+            title: "Share Song With Friends",
+            buttons: [
+                {
+                    text: "Share On Facebook",
+                    icon: "logo-facebook",
+                    handler: function () {
+                        _this.socialSharing.shareViaFacebook(music.name, music.image, music.music_url);
+                    }
+                },
+                {
+                    text: "Share On Twitter",
+                    icon: "logo-twitter",
+                    handler: function () {
+                        _this.socialSharing.shareViaTwitter(music.name, music.image, music.music_url);
+                    }
+                },
+                {
+                    text: "Share",
+                    icon: "share",
+                    handler: function () {
+                        _this.socialSharing.share(music.name, "", music.image, music.image_url);
+                    }
+                },
+                {
+                    text: "Cancel",
+                    role: "destructive"
+                }
+            ]
+        });
+        shareSongActionSheet.present();
+    };
+    HomePage.prototype.goToMusicPlayer = function (music) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_4__music_player_music_player__["a" /* MusicPlayerPage */], {
+            music: music
+        });
+    };
+    HomePage.prototype.addToFavorites = function (music) {
+        this.musicProvider.addToFavorites(music);
+    };
+    HomePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-home',template:/*ion-inline-start:"C:\Users\Kishore Kumar\Desktop\Ionic 3\musica\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>All Songs</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-refresher (ionRefresh)="addOneSong($event)">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-card *ngFor = "let music of allMusic">\n\n    <ion-card-header>\n      <button (click)="addToFavorites(music)" ion-button block>Add to Favorites</button>\n    </ion-card-header>\n\n    <img [src]="music.image">\n    <ion-card-content>\n      <ion-card-title>{{music.name}}</ion-card-title>\n      <ion-item>\n        <button ion-button item-left color="default" (click)="shareSong(music)" outline round icon-left>\n          <ion-icon name="share-alt"></ion-icon>Share&nbsp;\n        </button>\n        <button ion-button outline item-right color="danger" (click)="goToMusicPlayer(music)" round icon-left>\n          <ion-icon name="musical-note"></ion-icon>Listen&nbsp;\n        </button>\n      </ion-item>\n    </ion-card-content>\n\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Kishore Kumar\Desktop\Ionic 3\musica\src\pages\home\home.html"*/
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__["a" /* SocialSharing */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_social_sharing__["a" /* SocialSharing */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* ActionSheetController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_music_music__["a" /* MusicProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_music_music__["a" /* MusicProvider */]) === "function" && _e || Object])
+    ], HomePage);
+    return HomePage;
+    var _a, _b, _c, _d, _e;
+}());
+
+//# sourceMappingURL=home.js.map
 
 /***/ }),
 
@@ -284,6 +296,7 @@ var MusicPlayerPage = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_music_music__ = __webpack_require__(100);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -295,39 +308,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var ListPage = (function () {
-    function ListPage(navCtrl, navParams) {
+    function ListPage(musicProvider, navCtrl, navParams) {
+        this.musicProvider = musicProvider;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        // If we navigated to this page, we will have an item available as a nav param
-        this.selectedItem = navParams.get('item');
-        // Let's populate this page with some filler content for funzies
-        this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-            'american-football', 'boat', 'bluetooth', 'build'];
-        this.items = [];
-        for (var i = 1; i < 11; i++) {
-            this.items.push({
-                title: 'Item ' + i,
-                note: 'This is item #' + i,
-                icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-            });
-        }
+        this.favoriteSongs = [];
     }
-    ListPage_1 = ListPage;
-    ListPage.prototype.itemTapped = function (event, item) {
-        // That's right, we're pushing to ourselves!
-        this.navCtrl.push(ListPage_1, {
-            item: item
-        });
+    ListPage.prototype.ionViewDidLoad = function () {
+        this.favoriteSongs = this.musicProvider.getFavorites();
     };
-    ListPage = ListPage_1 = __decorate([
+    ListPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-list',template:/*ion-inline-start:"C:\Users\Kishore Kumar\Desktop\Ionic 3\musica\src\pages\list\list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>List</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon [name]="item.icon" item-start></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-end>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n  <div *ngIf="selectedItem" padding>\n    You navigated here from <b>{{selectedItem.title}}</b>\n  </div>\n</ion-content>\n'/*ion-inline-end:"C:\Users\Kishore Kumar\Desktop\Ionic 3\musica\src\pages\list\list.html"*/
+            selector: 'page-list',template:/*ion-inline-start:"C:\Users\Kishore Kumar\Desktop\Ionic 3\musica\src\pages\list\list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Favorites</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-card *ngFor="let song of favoriteSongs">\n    <img [src]="song.image">\n\n    <ion-card-content>\n      <ion-card-title>{{song.name}}</ion-card-title>\n    </ion-card-content>\n  </ion-card>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Kishore Kumar\Desktop\Ionic 3\musica\src\pages\list\list.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__providers_music_music__["a" /* MusicProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], ListPage);
     return ListPage;
-    var ListPage_1;
 }());
 
 //# sourceMappingURL=list.js.map
@@ -357,14 +355,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(268);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_music_player_music_player__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(195);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_social_sharing__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_media__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_music_music__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__providers_music_music__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_http__ = __webpack_require__(197);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -434,9 +432,9 @@ var AppModule = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(194);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(201);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -462,8 +460,8 @@ var MyApp = (function () {
         this.initializeApp();
         // used for an example of ngFor and navigation
         this.pages = [
-            { title: 'Home', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] },
-            { title: 'List', component: __WEBPACK_IMPORTED_MODULE_5__pages_list_list__["a" /* ListPage */] }
+            { title: 'All Songs', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] },
+            { title: 'Favourite Songs', component: __WEBPACK_IMPORTED_MODULE_5__pages_list_list__["a" /* ListPage */] }
         ];
     }
     MyApp.prototype.initializeApp = function () {
