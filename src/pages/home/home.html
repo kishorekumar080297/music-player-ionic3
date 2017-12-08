@@ -8,16 +8,21 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="addOneSong($event)">
+    <ion-refresher-content>
 
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-card *ngFor = "let music of allMusic">
     <img [src]="music.image">
     <ion-card-content>
       <ion-card-title>{{music.name}}</ion-card-title>
+      <ion-item>
+        <button ion-button item-left color="default" outline round icon-left><ion-icon name="share-alt"></ion-icon>Share&nbsp;</button>
+        <button ion-button outline item-right color="danger" round icon-left><ion-icon name="musical-note"></ion-icon>Listen&nbsp;</button>
+      </ion-item>
     </ion-card-content>
-    <ion-item>
-      <button ion-button item-left color="default" outline round icon-left><ion-icon name="share-alt"></ion-icon>Share&nbsp;</button>
-      <button ion-button outline item-right color="danger" round icon-left><ion-icon name="musical-note"></ion-icon>Listen&nbsp;</button>
-    </ion-item>
+
   </ion-card>
 
 </ion-content>

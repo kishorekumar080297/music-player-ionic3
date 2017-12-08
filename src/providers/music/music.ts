@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+// import { HttpClient } from '@angular/common/http';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
@@ -20,6 +20,11 @@ export class MusicProvider {
 
   getMusic() {
     return this.http.get(API).map(response => response.json());
+  }
+
+  getOneSong(){
+    let oneSongUrl = API + "/qty/1";
+    return this.http.get(oneSongUrl).map(response => response.json());
   }
 
 }
