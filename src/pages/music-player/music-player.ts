@@ -18,4 +18,11 @@ export class MusicPlayerPage {
 
   }
 
+  stopMusic(){
+
+  }
+
+  playMusic() {
+
+  }
 }
