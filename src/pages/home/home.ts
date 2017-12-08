@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController, ActionSheetController } from 'ionic-angular';
 import { MusicProvider } from '../../providers/music/music';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { MusicPlayerPage } from '../music-player/music-player';
+
 
 @Component({
   selector: 'page-home',
@@ -73,6 +75,10 @@ public allMusic = [];
       ],
     });
     shareSongActionSheet.present();
+  }
+
+  goToMusicPlayer() {
+    this.navCtrl.push(MusicPlayerPage);
   }
 
 }
