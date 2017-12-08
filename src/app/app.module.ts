@@ -10,6 +10,7 @@ import { MusicPlayerPage } from '../pages/music-player/music-player';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { MediaPlugin } from '@ionic-native/media';
 
 import { MusicProvider } from '../providers/music/music';
 import { HttpModule } from '@angular/http';
@@ -37,6 +38,7 @@ import { HttpModule } from '@angular/http';
     StatusBar,
     SplashScreen,
     SocialSharing,
+    MediaPlugin,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MusicProvider
   ]
