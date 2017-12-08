@@ -77,8 +77,10 @@ public allMusic = [];
     shareSongActionSheet.present();
   }
 
-  goToMusicPlayer() {
-    this.navCtrl.push(MusicPlayerPage);
+  goToMusicPlayer(music) {
+    this.navCtrl.push(MusicPlayerPage, {
+      music: music
+    });
   }
 
 }
