@@ -8,11 +8,16 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-card *ngFor = "let music of allMusic">
+    <img [src]="music.image">
+    <ion-card-content>
+      <ion-card-title>{{music.name}}</ion-card-title>
+    </ion-card-content>
+    <ion-item>
+      <button ion-button item-left color="default" outline round icon-left><ion-icon name="share-alt"></ion-icon>Share&nbsp;</button>
+      <button ion-button outline item-right color="danger" round icon-left><ion-icon name="musical-note"></ion-icon>Listen&nbsp;</button>
+    </ion-item>
+  </ion-card>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
