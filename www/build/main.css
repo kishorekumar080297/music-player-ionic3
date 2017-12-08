@@ -3950,82 +3950,6 @@ ion-action-sheet {
   background: #fff;
 }
 
-
-
-.action-sheet-md {
-  text-align: center;
-}
-
-.action-sheet-md .action-sheet-wrapper {
-  margin: constant(safe-area-inset-top) auto constant(safe-area-inset-bottom);
-  margin: env(safe-area-inset-top) auto env(safe-area-inset-bottom);
-}
-
-.action-sheet-md .action-sheet-container {
-  padding: 0 10px;
-}
-
-.action-sheet-md .action-sheet-group {
-  border-radius: 13px;
-  margin-bottom: 8px;
-  background: #f9f9f9;
-}
-
-.action-sheet-md .action-sheet-group:first-child {
-  margin-top: 10px;
-}
-
-.action-sheet-md .action-sheet-group:last-child {
-  margin-bottom: 10px;
-}
-
-.action-sheet-md .action-sheet-title {
-  padding: 1.5rem;
-  text-align: center;
-  border-radius: 0;
-  border-bottom: 0.55px solid #d6d6da;
-  font-size: 1.3rem;
-  font-weight: 400;
-  color: #8f8f8f;
-}
-
-.action-sheet-md .action-sheet-button {
-  margin: 0;
-  padding: 18px;
-  min-height: 5.6rem;
-  border-bottom: 0.55px solid #d6d6da;
-  font-size: 2rem;
-  color: #007aff;
-  background: transparent;
-}
-
-.action-sheet-md .action-sheet-button:last-child {
-  border-bottom-color: transparent;
-}
-
-.action-sheet-md .action-sheet-button.activated {
-  margin-top: -0.55px;
-  border-top: 0.55px solid #ebebeb;
-  border-bottom-color: #ebebeb;
-  background: #ebebeb;
-}
-
-.action-sheet-md .action-sheet-selected {
-  font-weight: bold;
-  background: #fff;
-}
-
-.action-sheet-md .action-sheet-destructive {
-  color: #f53d3d;
-}
-
-.action-sheet-md .action-sheet-cancel {
-  font-weight: 600;
-  background: #fff;
-}
-
-
-/*
 .action-sheet-md .action-sheet-title {
   text-align: left;
   text-align: start;
@@ -4081,7 +4005,7 @@ ion-action-sheet {
 .action-sheet-md .action-sheet-selected {
   font-weight: bold;
 }
-*/
+
 .action-sheet-wp .action-sheet-title {
   text-align: left;
   text-align: start;
