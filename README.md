@@ -22,7 +22,6 @@ Run through Browser
 
 ```
 $ ionic serve
-
 ```
 
 To run on a device, connect the device and enable adb
@@ -30,3 +29,6 @@ To run on a device, connect the device and enable adb
 ```
 $ ionic run android
 ```
+
+## License ##
+Copyright (c) 2018 Kishore Kumar <kishorekumar080297@gmail.com>  
